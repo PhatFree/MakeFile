@@ -1,0 +1,12 @@
+#This was for testing
+
+test.x: foo.o bar.o
+	 echo "Hello world"
+
+foo.o: bar.o
+	 echo "making foo"
+
+bar.o: GraphNode.cpp foo.o
+	 echo "making bar, depends on GraphNode!"
+
+
