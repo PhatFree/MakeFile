@@ -19,7 +19,8 @@ DepGraph::~DepGraph()
 	delete _cyclicNodes;
 }
 void DepGraph::print()
-{// does nothing, might use this for is cyclic printing...
+{// calls upon the MakeTree to print all information
+	_tree->print();
 }
 
 void DepGraph::parseDepGraph()
