@@ -160,14 +160,14 @@ void DepGraph::runMake (GraphNode *p)
 	for (int i = 0; i < p->numDependentNodes(); i++)
 	{	
 		//time stamp the depndent node fix later				//this could be cause of double make issue
-		long dependent_ts;							//#
 		GraphNode *tempNode = p -> dependentNodes()->at(i);			//#
 		// This is ineficent, fix later,					
 		if (tempNode->isATarget())						
 			runMake(p-> dependentNodes()-> at(i));				
-		else 									
-			if(timestamp(tempNode->getName().c_str(), &dependent_ts))	
-				tempNode->setTimestamp(dependent_ts);			
+	//	else 									
+		long dependent_ts;							//#
+		if(timestamp(tempNode->getName().c_str(), &dependent_ts))	
+			tempNode->setTimestamp(dependent_ts);			
 
 		//if the dependent time stamp is newer, we need to make the target
 		if (tempNode->getTimestamp() > p->getTimestamp()){
@@ -182,8 +182,8 @@ void DepGraph::runMake (GraphNode *p)
 	{
 		p->runCommand();
 		p->wasMade(true);
-		timestamp( p->getName().c_str(), &target_ts);			//this is the fix for the possible issue above.
-		p->setTimestamp(target_ts);					//#
+	//	timestamp( p->getName().c_str(), &target_ts);			//this is the fix for the possible issue above.
+	//	p->setTimestamp(target_ts);					//#
 	}
 	else //let the user know the top file is already been made.
 		if( p->getName() == firstTarget->getName())
